@@ -1,0 +1,54 @@
+version: '2'
+
+services:
+  drone-server:
+    image: drone/drone:latest
+    container_name: drone-server
+    networks:
+      - dronenet
+    ports:
+      - '8080:80'
+      - '10082:443'
+      - '10083:9000'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/data/drone/:/var/lib/drone
+    environment:
+      - DRONE_AGENTS_ENABLED=true
+      - DRONE_GITHUB_SERVER=https://github.com
+      - DRONE_GITHUB_CLIENT_ID=600c9b8ddf47a551fd65
+      - DRONE_GITHUB_CLIENT_SECRET=714551210c3acbae84f6718709254ccd6dc4a2c4
+      - DRONE_RPC_SECRET=234edfd5e2e555751a9a692526bc640d
+      - DRONE_SERVER_HOST=c25be61f.ngrok.io
+      - DRONE_SERVER_PROTO=http
+      - DRONE_OPEN=true
+      - DRONE_DATABASE_DATASOURCE=/var/lib/drone/drone.sqlite
+      - DRONE_DATABASE_DRIVER=sqlite3
+      - DRONE_DEBUG=true
+      - DRONE_LOGS_DEBUG=true
+      - DRONE_LOGS_TRACE=true
+      - DRONE_USER_CREATE=username:TheWinds，admin:true
+      - TZ=Asia/Singapore
+    restart: always
+  drone-agent:
+    image: drone/agent:latest
+    container_name: drone-agent
+    networks:
+      - dronenet
+    depends_on:
+      - drone-server
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_RPC_SERVER=http://drone-server
+      - DRONE_RPC_SECRET=234edfd5e2e555751a9a692526bc640d
+      - DRONE_RPC_PROTO=http
+      - DRONE_RUNNER_CAPACITY=2
+      - DRONE_DEBUG=true
+      - DRONE_LOGS_DEBUG=true
+      - DRONE_LOGS_TRACE=true
+      - TZ=Asia/Shanghai
+    restart: always
+
+networks:
+  dronenet:
