@@ -1,22 +1,16 @@
+---
 kind: pipeline
+type: docker
 name: default
 
-workspace:
-  base: /go
-  path: src/github.com/yourname/go-drone-hello-world
-
 steps:
-   - name: build
-     image: golang
-     commands:
-       - go get
-       - go build -o output
-       - chmod +x output
+- name: build
+  image: golang
+  environment:
+    A_SECRET:
+      from_secret: a_secret
+  commands:
+  - echo $$A_SECRET
+  - go run . > test_secret.txt
+  - cat test_secret.txt
 
-   - name: run
-     image: golang
-     commands:
-       - go get
-       - go build -o output
-       - chmod +x output
-       - ./output
