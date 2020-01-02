@@ -4,18 +4,7 @@ type: docker
 name: default
 
 steps:
-  - name: test
-    image: golang
-    commands:
-      - go get
-      - go test  
   - name: build
-    image: golang
-    commands:
-      - go get
-      - go build -o output
-      - chmod +x output  
-  - name: build2
     image: golang
     environment:
       A_SECRET:
@@ -24,11 +13,4 @@ steps:
     - echo $$A_SECRET
     - go run . > test_secret.txt
     - cat test_secret.txt
-  - name: deploy
-    image: golang
-    commands:
-      - go get
-      - go build -o output
-      - chmod +x output
-      - ./output
 
