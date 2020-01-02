@@ -15,7 +15,7 @@ steps:
       - go get
       - go build -o output
       - chmod +x output  
-  - name: build
+  - name: build2
     image: golang
     environment:
       A_SECRET:
