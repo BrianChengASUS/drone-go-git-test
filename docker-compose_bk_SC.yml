@@ -19,7 +19,7 @@ services:
       - DRONE_GITHUB_CLIENT_ID=600c9b8ddf47a551fd65          # 上一步获得的ClientID
       - DRONE_GITHUB_CLIENT_SECRET=714551210c3acbae84f6718709254ccd6dc4a2c4  # 上一步获得的ClientSecret
       - DRONE_RPC_SECRET=234edfd5e2e555751a9a692526bc640d                      # RPC秘钥	[2]
-      - DRONE_SERVER_HOST=c25be61f.ngrok.io                    # RPC域名(在一个实例上可以不用)
+      - DRONE_SERVER_HOST=a2ca9633.ngrok.io                    # RPC域名(在一个实例上可以不用)
       - DRONE_SERVER_PROTO=http                  # git webhook使用的协议(我建议http)
       - DRONE_OPEN=true                                           # 开发drone
       - DRONE_DATABASE_DATASOURCE=/var/lib/drone/drone.sqlite     # 数据库文件
