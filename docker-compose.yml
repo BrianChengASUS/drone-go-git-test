@@ -19,7 +19,7 @@ services:
       - DRONE_GITHUB_CLIENT_ID=600c9b8ddf47a551fd65
       - DRONE_GITHUB_CLIENT_SECRET=714551210c3acbae84f6718709254ccd6dc4a2c4
       - DRONE_RPC_SECRET=234edfd5e2e555751a9a692526bc640d
-      - DRONE_SERVER_HOST=c25be61f.ngrok.io
+      - DRONE_SERVER_HOST=a2ca9633.ngrok.io
       - DRONE_SERVER_PROTO=http
       - DRONE_OPEN=true
       - DRONE_DATABASE_DATASOURCE=/var/lib/drone/drone.sqlite
